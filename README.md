@@ -1,0 +1,2 @@
+# AWSdevOps
+To understand SCM

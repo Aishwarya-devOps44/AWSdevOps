@@ -1,15 +1,18 @@
+cat << 'EOF' > .github/workflows/ci.yml
+# Retry with verified credentials - March 07, 2025
 name: Advanced CI Pipeline
 on: [push]
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Advanced CI pipline
+      - name: Checkout code
         uses: actions/checkout@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credential        with:
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
@@ -21,3 +24,4 @@ jobs:
           docker build -t awsdevops-nginx ./my-app
           docker tag awsdevops-nginx:latest 343218214766.dkr.ecr.us-east-2.amazonaws.com/awsdevops-nginx:latest
           docker push 343218214766.dkr.ecr.us-east-2.amazonaws.com/awsdevops-nginx:latest
+EOF

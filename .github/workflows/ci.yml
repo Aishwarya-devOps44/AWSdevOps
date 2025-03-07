@@ -1,4 +1,4 @@
-# Build and push with new credentials - March 08, 2025
+# Build and push with new credentials - March 08, 2025 - Debug Retry
 name: Advanced CI Pipeline
 on: [push]
 jobs:
@@ -9,6 +9,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - name: Debug Secrets Before Config
+        run: |
+          echo "Access Key ID set: ${AWS_ACCESS_KEY_ID:+yes}"
+          echo "Secret Access Key set: ${AWS_SECRET_ACCESS_KEY:+yes}"
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:

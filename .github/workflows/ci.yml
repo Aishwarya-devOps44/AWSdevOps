@@ -1,5 +1,4 @@
-cat << 'EOF' > .github/workflows/ci.yml
-# Retry with verified credentials - March 07, 2025
+# Retry with verified credentials - March 08, 2025
 name: Advanced CI Pipeline
 on: [push]
 jobs:
@@ -24,4 +23,3 @@ jobs:
           docker build -t awsdevops-nginx ./my-app
           docker tag awsdevops-nginx:latest 343218214766.dkr.ecr.us-east-2.amazonaws.com/awsdevops-nginx:latest
           docker push 343218214766.dkr.ecr.us-east-2.amazonaws.com/awsdevops-nginx:latest
-EOF
